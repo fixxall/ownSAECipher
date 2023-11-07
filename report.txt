@@ -1,0 +1,125 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.6, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+rootdir: /mnt/f/GitLab/ownSAE
+plugins: anyio-4.0.0, web3-5.31.3, xdist-1.34.0, forked-1.4.0, eth-brownie-1.19.3, hypothesis-6.27.3
+collected 22 items
+
+test.py .F..F..F..F..F..F..F.F                                           [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_Test2_BitsPad8 ______________________________
+
+    def test_Test2_BitsPad8():
+>       assert own.BitsPad8("123213214214") == "Input tidak valid","test failed"
+E       AssertionError: test failed
+E       assert '0000123213214214' == 'Input tidak valid'
+E         - Input tidak valid
+E         + 0000123213214214
+
+test.py:9: AssertionError
+____________________________ test_Test2_BytesToBits ____________________________
+
+    def test_Test2_BytesToBits():
+>       assert own.BytesToBits(930981323) == "Input tidak valid","test failed"
+
+test.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <main.OWNSAE object at 0x7fa580ae98a0>, x = 930981323
+
+    def BytesToBits(self, x):
+>       if(len(x)==0): return ''
+E       TypeError: object of type 'int' has no len()
+
+main.py:17: TypeError
+____________________________ test_Test2_BitsToBytes ____________________________
+
+    def test_Test2_BitsToBytes():
+>       assert own.BitsToBytes("123213214214") == "Input tidak valid","test failed"
+
+test.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <main.OWNSAE object at 0x7fa580ae98a0>, x = '123213214214'
+
+    def BitsToBytes(self, x):
+        if(len(x)==0): return ''
+>       count = int(x, 2)
+E       ValueError: invalid literal for int() with base 2: '123213214214'
+
+main.py:25: ValueError
+______________________________ test_Test2_xorBits ______________________________
+
+    def test_Test2_xorBits():
+>       assert own.xorBits("!32314124242c2c",3423423) == "Input tidak valid","test failed"
+
+test.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <main.OWNSAE object at 0x7fa580ae98a0>, a = '!32314124242c2c'
+b = 3423423
+
+    def xorBits(self, a, b):
+        ret = ''
+>       for i, j in zip(a,b):
+E       TypeError: 'int' object is not iterable
+
+main.py:31: TypeError
+___________________________ test_Test2_shifterRight ____________________________
+
+    def test_Test2_shifterRight():
+>       assert own.shifterRight("1322323") == "Input tidak valid","test failed"
+E       TypeError: OWNSAE.shifterRight() missing 1 required positional argument: 'key'
+
+test.py:37: TypeError
+____________________________ test_Test2_shifterLeft ____________________________
+
+    def test_Test2_shifterLeft():
+>       assert own.shifterLeft("1322323") == "Input tidak valid","test failed"
+E       TypeError: OWNSAE.shifterLeft() missing 1 required positional argument: 'key'
+
+test.py:44: TypeError
+______________________________ test_Test2_decrypt ______________________________
+
+    def test_Test2_decrypt():
+>       assert own.decrypt("Dwadwadwdq2301392031zz2") == "Input tidak valid","test failed"
+
+test.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <main.OWNSAE object at 0x7fa580ae98a0>
+message = 'Dwadwadwdq2301392031zz2'
+
+    def decrypt(self, message):
+>       message = binascii.unhexlify(message)
+E       binascii.Error: Odd-length string
+
+main.py:65: Error
+______________________________ test_Test2_encrypt ______________________________
+
+    def test_Test2_encrypt():
+>       assert own.encrypt(213123123) == "Input tidak valid","test failed"
+
+test.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+main.py:51: in encrypt
+    mbits = self.BytesToBits(message)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <main.OWNSAE object at 0x7fa580ae98a0>, x = 213123123
+
+    def BytesToBits(self, x):
+>       if(len(x)==0): return ''
+E       TypeError: object of type 'int' has no len()
+
+main.py:17: TypeError
+=========================== short test summary info ============================
+FAILED test.py::test_Test2_BitsPad8 - AssertionError: test failed
+FAILED test.py::test_Test2_BytesToBits - TypeError: object of type 'int' has ...
+FAILED test.py::test_Test2_BitsToBytes - ValueError: invalid literal for int(...
+FAILED test.py::test_Test2_xorBits - TypeError: 'int' object is not iterable
+FAILED test.py::test_Test2_shifterRight - TypeError: OWNSAE.shifterRight() mi...
+FAILED test.py::test_Test2_shifterLeft - TypeError: OWNSAE.shifterLeft() miss...
+FAILED test.py::test_Test2_decrypt - binascii.Error: Odd-length string
+FAILED test.py::test_Test2_encrypt - TypeError: object of type 'int' has no l...
+========================= 8 failed, 14 passed in 0.31s =========================

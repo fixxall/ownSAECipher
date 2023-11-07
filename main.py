@@ -14,12 +14,14 @@ class OWNSAE:
         return bits
 
     def BytesToBits(self, x):
+        if(len(x)==0): return ''
         count = int.from_bytes(x, "big")
         bits = bin(count)[2:]
         bits = self.BitsPad8(bits)
         return bits
     
     def BitsToBytes(self, x):
+        if(len(x)==0): return ''
         count = int(x, 2)
         byt = count.to_bytes(len(x)//8,"big")
         return byt
@@ -33,12 +35,14 @@ class OWNSAE:
 
     def shifterRight(self, x, key):
         ll = len(x)
+        if(ll==0): return x
         key = key%ll
         ret = x[key:] + x[:key]
         return ret 
 
     def shifterLeft(self, x, key):
         ll = len(x)
+        if(ll==0): return x
         key = key%ll
         ret = x[-key:] + x[:-key]
         return ret 
@@ -95,7 +99,7 @@ def options():
 if __name__ == "__main__":
     menus()
     own = OWNSAE(b'keykeykeykeykey', 17, 91)
-    assert own.shifterLeft(own.shifterRight('11000101001',4),4)=='11000101001'
+    print(own.xorBits("11111001001100010","10010001011000000"))
     while(True):
         options()
         inp = input("Choice: ").strip()
