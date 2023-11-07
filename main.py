@@ -99,7 +99,6 @@ def options():
 if __name__ == "__main__":
     menus()
     own = OWNSAE(b'keykeykeykeykey', 17, 91)
-    print(own.xorBits("11111001001100010","10010001011000000"))
     while(True):
         options()
         inp = input("Choice: ").strip()
